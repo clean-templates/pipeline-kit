@@ -23,6 +23,4 @@ public class GitHubProvider implements Provider {
         repository.done();
 
     }
-
-
 }

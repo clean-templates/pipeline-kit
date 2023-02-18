@@ -3,3 +3,7 @@ spring:
     name: ci-service
 server:
   port: 8080
+
+access:
+  token:
+    github: 'token'
