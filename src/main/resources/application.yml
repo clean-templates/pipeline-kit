@@ -1,3 +1,0 @@
-access:
-  token:
-    github: ${GITHUB_ACCESS_TOKEN:Token}
