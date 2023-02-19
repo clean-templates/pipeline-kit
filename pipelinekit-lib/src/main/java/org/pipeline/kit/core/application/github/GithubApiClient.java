@@ -13,9 +13,7 @@ import org.pipeline.kit.extneral.HttpRestClient;
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GithubApiClient implements IGithubApiClient {
@@ -111,59 +109,7 @@ public class GithubApiClient implements IGithubApiClient {
             System.out.println(repoDetails);
             return repoDetails;
 
-//        for (Tree t : root.getTree()) {
-//            String path = t.getPath();
-//            String type = t.getType();
-//
-//            if (type.equals("blob")) {
-//                String name = path.substring(path.lastIndexOf('/') + 1);
-//                String id = t.getSha();
-//
-//                String parentPath = path.substring(0, path.lastIndexOf('/'));
-//                Folder parentFolder = folderMap.get(parentPath);
-//
-//                if (parentFolder == null) {
-//                    parentFolder = Folder.builder()
-//                            .subFolders(new ArrayList<>())
-//                            .files(new ArrayList<>())
-//                            .build();
-//                    folderMap.put(parentPath, parentFolder);
-//                }
-//
-//                parentFolder.getFiles().add(new File(name, id));
-//            } else if (type.equals("tree")) {
-//                if (!path.contains("/")) {
-//                    continue;
-//                }
-//
-//                String parentPath = path.substring(0, path.lastIndexOf('/'));
-//                Folder parentFolder = folderMap.get(parentPath);
-//
-//                if (parentFolder == null) {
-//                    parentFolder =  Folder.builder()
-//                            .subFolders(new ArrayList<>())
-//                            .files(new ArrayList<>())
-//                            .build();
-//                    folderMap.put(parentPath, parentFolder);
-//                }
-//
-//                Folder folder = folderMap.get(path);
-//
-//                if (folder == null) {
-//                    folder = Folder.builder()
-//                            .subFolders(new ArrayList<>())
-//                            .files(new ArrayList<>())
-//                            .build();
-//                    folderMap.put(path, folder);
-//                }
-//
-//                parentFolder.getSubFolders().add(folder);
-//
-//                return null;
-//            }
-//
-//
-//        }
+
         }
 
     public Folder findSubfolder(String name, Folder folder) {

@@ -17,7 +17,7 @@ public class GithubClientFacade {
 
     public Repository getRepoContent(String repositoryName, String branch) throws IOException, InterruptedException {
         Repository repoDetails = githubApiClient.getRepoDetails(repositoryName, branch);
-        githubApiClient.getRepoContent(repoDetails);
-        return null;
+        Repository repoContent = githubApiClient.getRepoContent(repoDetails);
+        return repoContent;
     }
 }

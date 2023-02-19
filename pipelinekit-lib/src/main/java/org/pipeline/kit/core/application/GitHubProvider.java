@@ -1,8 +1,9 @@
 package org.pipeline.kit.core.application;
 
-import org.kohsuke.github.*;
-import org.pipeline.kit.core.application.github.GithubApiClient;
-import org.pipeline.kit.core.application.github.IGithubApiClient;
+import org.kohsuke.github.GHCreateRepositoryBuilder;
+import org.kohsuke.github.GHTree;
+import org.kohsuke.github.GitHub;
+import org.kohsuke.github.GitHubBuilder;
 import org.pipeline.kit.core.application.mapper.GithubRepositoryMapper;
 import org.pipeline.kit.core.application.mapper.IRepositoryMapper;
 import org.pipeline.kit.core.domain.provider.Provider;
@@ -42,8 +43,6 @@ public class GitHubProvider implements Provider {
      */
     @Override
     public Repository getRepoContent(String repositoryName, String branch, int depth) throws IOException, InterruptedException {
-        githubClientFacade.getRepoContent(repositoryName, branch);
-        return null;
+        return githubClientFacade.getRepoContent(repositoryName, branch);
     }
-
 }
