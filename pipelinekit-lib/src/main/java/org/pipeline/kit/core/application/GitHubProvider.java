@@ -1,8 +1,11 @@
-package org.pipeline.kit.core.domain.provider;
+package org.pipeline.kit.core.application;
 
 import org.kohsuke.github.*;
-import org.pipeline.kit.core.domain.mapper.GithubRepositoryMapper;
-import org.pipeline.kit.core.domain.mapper.IRepositoryMapper;
+import org.pipeline.kit.core.application.github.GithubApiClient;
+import org.pipeline.kit.core.application.github.IGithubApiClient;
+import org.pipeline.kit.core.application.mapper.GithubRepositoryMapper;
+import org.pipeline.kit.core.application.mapper.IRepositoryMapper;
+import org.pipeline.kit.core.domain.provider.Provider;
 import org.pipeline.kit.core.domain.repository.Repository;
 
 import java.io.IOException;
@@ -11,12 +14,15 @@ public class GitHubProvider implements Provider {
 
     private final GitHub gitHub;
     private final IRepositoryMapper<GHTree> repositoryMapper;
+    private final GithubClientFacade githubClientFacade;
+
 
     public GitHubProvider(String token) throws IOException {
         this.gitHub = new GitHubBuilder()
                 .withOAuthToken(token)
                 .build();
         this.repositoryMapper = new GithubRepositoryMapper();
+        this.githubClientFacade = new GithubClientFacade(token);
     }
 
     @Override
@@ -35,11 +41,9 @@ public class GitHubProvider implements Provider {
      * @throws IOException
      */
     @Override
-    public Repository getRepoContent(String repositoryName, String branch, int depth) throws IOException {
-        GHRepository repository = gitHub.getRepository(repositoryName);
-        String branchSha = repository.getBranch(branch).getSHA1();
-        GHTree treeRecursive = repository.getTreeRecursive(branchSha, depth);
-        return repositoryMapper.mapToRepo(treeRecursive);
+    public Repository getRepoContent(String repositoryName, String branch, int depth) throws IOException, InterruptedException {
+        githubClientFacade.getRepoContent(repositoryName, branch);
+        return null;
     }
 
 }

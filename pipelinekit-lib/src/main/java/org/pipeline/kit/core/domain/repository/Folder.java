@@ -3,6 +3,7 @@ package org.pipeline.kit.core.domain.repository;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Data
@@ -10,6 +11,6 @@ import java.util.List;
 public class Folder {
     private String name;
     private String id;
-    private List<Folder> subFolders;
-    private List<File> files;
+    private HashMap<String, Folder> subFolders;
+    private HashMap<String, File> files;
 }

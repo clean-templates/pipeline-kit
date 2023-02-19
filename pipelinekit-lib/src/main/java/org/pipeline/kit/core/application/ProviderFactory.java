@@ -1,6 +1,8 @@
-package org.pipeline.kit.core.domain.provider;
+package org.pipeline.kit.core.application;
 
 import org.pipeline.kit.core.domain.exceptions.ProviderIsNotSupportedException;
+import org.pipeline.kit.core.domain.provider.Provider;
+import org.pipeline.kit.core.domain.provider.ProviderType;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package org.pipeline.kit.core.domain.mapper;
+package org.pipeline.kit.core.application.mapper;
 
 import org.kohsuke.github.GHTree;
 import org.kohsuke.github.GHTreeEntry;
@@ -13,9 +13,9 @@ public class GithubRepositoryMapper implements IRepositoryMapper<GHTree> {
     public Repository mapToRepo(GHTree ghTree) {
         return Repository.builder()
                 .isTruncated(ghTree.isTruncated())
-                .sha(ghTree.getSha())
+                .headCommit(ghTree.getSha())
                 .url(ghTree.getUrl().toString())
-                .folderList(mapFolder(ghTree.getEntry("/")))
+//                .folderList(mapFolder(ghTree.getEntry("/")))
                 .build();
     }
 

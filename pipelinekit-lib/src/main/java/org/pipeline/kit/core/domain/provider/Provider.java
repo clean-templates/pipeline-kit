@@ -8,6 +8,6 @@ public interface Provider {
 
     void createRepository(String name) throws IOException;
 
-    Repository getRepoContent(String repositoryName ,String branch, int depth) throws IOException;
+    Repository getRepoContent(String repositoryName ,String branch, int depth) throws IOException, InterruptedException;
 
 }

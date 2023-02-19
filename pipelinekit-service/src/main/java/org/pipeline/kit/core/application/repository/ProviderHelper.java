@@ -2,7 +2,7 @@ package org.pipeline.kit.core.application.repository;
 
 import org.pipeline.kit.core.domain.exceptions.ProviderIsNotSupportedException;
 import org.pipeline.kit.core.domain.provider.Provider;
-import org.pipeline.kit.core.domain.provider.ProviderFactory;
+import org.pipeline.kit.core.application.ProviderFactory;
 import org.pipeline.kit.core.domain.provider.ProviderType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
