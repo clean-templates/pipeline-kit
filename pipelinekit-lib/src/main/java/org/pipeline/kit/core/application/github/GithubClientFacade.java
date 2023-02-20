@@ -1,7 +1,7 @@
-package org.pipeline.kit.core.application;
+package org.pipeline.kit.core.application.github;
 
-import org.pipeline.kit.core.application.github.GithubApiClient;
-import org.pipeline.kit.core.application.github.IGithubApiClient;
+import org.pipeline.kit.core.application.github.client.GithubApiClient;
+import org.pipeline.kit.core.application.github.client.IGithubApiClient;
 import org.pipeline.kit.core.domain.repository.Repository;
 
 import java.io.IOException;

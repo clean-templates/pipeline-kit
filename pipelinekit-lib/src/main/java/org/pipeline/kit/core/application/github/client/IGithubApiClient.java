@@ -1,4 +1,4 @@
-package org.pipeline.kit.core.application.github;
+package org.pipeline.kit.core.application.github.client;
 
 import org.kohsuke.github.GHRepository;
 import org.pipeline.kit.core.domain.repository.Repository;

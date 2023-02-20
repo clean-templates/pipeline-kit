@@ -1,9 +1,10 @@
-package org.pipeline.kit.core.application;
+package org.pipeline.kit.core.application.github.provider;
 
 import org.kohsuke.github.GHCreateRepositoryBuilder;
 import org.kohsuke.github.GHTree;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
+import org.pipeline.kit.core.application.github.GithubClientFacade;
 import org.pipeline.kit.core.application.mapper.GithubRepositoryMapper;
 import org.pipeline.kit.core.application.mapper.IRepositoryMapper;
 import org.pipeline.kit.core.domain.provider.Provider;
