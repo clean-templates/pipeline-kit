@@ -37,12 +37,11 @@ public class GitHubProvider implements Provider {
      *
      * @param repositoryName should of the format owner/repo-name
      * @param branch
-     * @param depth recursive calls to get the depth of the tree
      * @return Repository Object containing its structure
      * @throws IOException
      */
     @Override
-    public Repository getRepoContent(String repositoryName, String branch, int depth) throws IOException, InterruptedException {
+    public Repository getRepoContent(String repositoryName, String branch) throws IOException, InterruptedException {
         return githubClientFacade.getRepoContent(repositoryName, branch);
     }
 }
