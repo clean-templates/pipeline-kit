@@ -7,17 +7,16 @@ import java.io.IOException;
 
 public class StashProvider implements Provider {
 
-    private final String username;
-    private final String password;
+   private final String token;
 
-    public StashProvider(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public StashProvider(String token) {
+        this.token = token;
     }
 
     @Override
     public void createRepository(String name) throws IOException {
         // TODO
+        new RuntimeException("Not implemented yet");
     }
 
     @Override

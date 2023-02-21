@@ -15,7 +15,7 @@ public class ProviderFactory  implements IProviderFactory {
         if(providerType.equals(ProviderType.GITHUB))
             return new GitHubProvider(token);
         else if(providerType.equals(ProviderType.STASH))
-            return new StashProvider("","");
+            return new StashProvider(token);
         else
             throw new ProviderIsNotSupportedException("No Such Provider");
     }
