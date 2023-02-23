@@ -19,4 +19,8 @@ public interface RepositoryApi {
             @PathVariable String owner,
             @PathVariable String repoName,
             @PathVariable String repoBranch) throws Exception;
+
+    @PostMapping("/create/branch")
+    @Operation(summary = "get repository directories")
+    ResponseEntity<Void> createBranch(@RequestBody CreateBranchApiRequest createBranchApiRequest);
 }

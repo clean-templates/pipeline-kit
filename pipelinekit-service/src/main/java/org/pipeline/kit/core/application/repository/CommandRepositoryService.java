@@ -1,6 +1,7 @@
 package org.pipeline.kit.core.application.repository;
 
 import lombok.AllArgsConstructor;
+import org.pipeline.kit.core.application.repository.dto.CreateBranchRequest;
 import org.pipeline.kit.core.application.repository.dto.CreateRepositoryRequest;
 import org.pipeline.kit.core.domain.repository.Repository;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,15 @@ public class CommandRepositoryService implements ICommandRepositoryService {
     public Repository getRepositoryContent(String repoName, String repoBranch) {
         try {
             return providerHelper.getProvider().getRepoContent(repoName,repoBranch);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void createBranch(CreateBranchRequest createBranchRequest) {
+        try {
+            providerHelper.getProvider().createBranch(createBranchRequest.getRepository(), createBranchRequest.getBranchName());
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

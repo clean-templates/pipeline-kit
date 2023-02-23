@@ -48,7 +48,8 @@ public class GitHubProvider implements Provider {
 
     @Override
     public void createBranch(String repositoryName, String branchName) throws IOException, InterruptedException {
-        String headCommit = githubClientFacade.getBranchHeadCommit(repositoryName, branchName);
+        // TODO: ability to branch from different branches
+        String headCommit = githubClientFacade.getBranchHeadCommit(repositoryName, "master");
         githubClientFacade.createBranch(repositoryName, branchName, headCommit);
     }
 }

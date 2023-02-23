@@ -11,6 +11,9 @@ import java.net.http.HttpResponse;
 
 public class HttpRestClient implements RestClient {
 
+    // TODO: externalize/Refactor httpclient requests
+    // TODO: Write end-to-end tests
+
     private static final String HTTPS_API_GITHUB_COM_REPOS = "https://api.github.com/repos/";
     private HttpClient httpClient;
 
