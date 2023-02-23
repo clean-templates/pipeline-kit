@@ -21,6 +21,6 @@ public interface RepositoryApi {
             @PathVariable String repoBranch) throws Exception;
 
     @PostMapping("/create/branch")
-    @Operation(summary = "get repository directories")
+    @Operation(summary = "create branch from master head commit")
     ResponseEntity<Void> createBranch(@RequestBody CreateBranchApiRequest createBranchApiRequest);
 }
