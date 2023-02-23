@@ -20,4 +20,12 @@ public class GithubClientFacade {
         Repository repoContent = githubApiClient.getRepoContent(repoDetails);
         return repoContent;
     }
+
+    public void createBranch(String repositoryName, String branchName, String headCommit) throws IOException, InterruptedException {
+        githubApiClient.createBranch(repositoryName, branchName, headCommit);
+    }
+
+    public String getBranchHeadCommit(String repositoryName, String branchName) throws IOException, InterruptedException {
+        return githubApiClient.getBranchHeadCommit(repositoryName, branchName);
+    }
 }

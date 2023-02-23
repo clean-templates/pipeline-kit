@@ -54,6 +54,17 @@ public class GithubApiClient implements IGithubApiClient {
     }
 
     @Override
+    public void createBranch(String repositoryName, String branchName, String headCommit) throws IOException, InterruptedException {
+        this.restClient.createBranch(repositoryName, branchName, headCommit, token);
+    }
+
+    @Override
+    public String getBranchHeadCommit(String repositoryName, String branchName) throws IOException, InterruptedException {
+        return getRepoDetails(repositoryName, branchName).getHeadCommit();
+    }
+
+    // TODO: abstract the github build
+    @Override
     public Repository getRepoContent(Repository repoDetails) throws IOException, InterruptedException {
         Map<String, Folder> folderMap = new HashMap<>();
         repoDetails.setFolderList(new HashMap<>());

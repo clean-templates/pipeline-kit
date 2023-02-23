@@ -45,4 +45,10 @@ public class GitHubProvider implements Provider {
     public Repository getRepoContent(String repositoryName, String branch) throws IOException, InterruptedException {
         return githubClientFacade.getRepoContent(repositoryName, branch);
     }
+
+    @Override
+    public void createBranch(String repositoryName, String branchName) throws IOException, InterruptedException {
+        String headCommit = githubClientFacade.getBranchHeadCommit(repositoryName, branchName);
+        githubClientFacade.createBranch(repositoryName, branchName, headCommit);
+    }
 }

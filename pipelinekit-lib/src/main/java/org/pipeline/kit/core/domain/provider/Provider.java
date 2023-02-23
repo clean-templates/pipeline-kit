@@ -10,4 +10,6 @@ public interface Provider {
 
     Repository getRepoContent(String repositoryName ,String branch) throws IOException, InterruptedException;
 
+    void createBranch(String repositoryName, String branchName) throws IOException, InterruptedException;
+
 }

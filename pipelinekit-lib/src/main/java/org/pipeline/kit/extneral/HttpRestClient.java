@@ -16,6 +16,7 @@ public class HttpRestClient implements RestClient {
 
     public HttpRestClient() {
         this.httpClient = HttpClient.newHttpClient();
+
     }
 
     @Override
@@ -47,5 +48,21 @@ public class HttpRestClient implements RestClient {
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
+    }
+
+    @Override
+    public void createBranch(String repositoryName, String branchName, String headCommit, String token) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(HTTPS_API_GITHUB_COM_REPOS
+                        .concat(repositoryName)
+                        .concat("/git/refs")
+                ))
+                .header("Accept", "application/vnd.github+json")
+                .header("Authorization", "Bearer " + token)
+                .header("X-GitHub-Api-Version", "2022-11-28")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"ref\":\"refs/heads/" + branchName + "\",\"sha\":\"" + headCommit + "\"}"))
+                .build();
+
+        httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }

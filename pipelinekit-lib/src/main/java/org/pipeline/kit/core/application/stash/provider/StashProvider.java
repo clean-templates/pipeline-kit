@@ -23,4 +23,9 @@ public class StashProvider implements Provider {
     public Repository getRepoContent(String repositoryName, String branch) throws IOException, InterruptedException {
         return null;
     }
+
+    @Override
+    public void createBranch(String repositoryName, String branchName) {
+        new RuntimeException("Not implemented yet");
+    }
 }
