@@ -1,4 +1,4 @@
-package org.pipeline.kit.extneral;
+package org.pipeline.kit.external;
 
 import org.pipeline.kit.core.application.RestClient;
 import org.pipeline.kit.core.domain.provider.PullRequestDetails;

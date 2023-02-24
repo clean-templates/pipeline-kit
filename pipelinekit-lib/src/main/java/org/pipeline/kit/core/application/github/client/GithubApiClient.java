@@ -10,7 +10,7 @@ import org.pipeline.kit.core.domain.provider.PullRequestDetails;
 import org.pipeline.kit.core.domain.repository.File;
 import org.pipeline.kit.core.domain.repository.Folder;
 import org.pipeline.kit.core.domain.repository.Repository;
-import org.pipeline.kit.extneral.HttpRestClient;
+import org.pipeline.kit.external.HttpRestClient;
 
 import java.io.IOException;
 import java.net.URI;
