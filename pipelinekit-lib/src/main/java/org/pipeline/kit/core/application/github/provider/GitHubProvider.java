@@ -8,6 +8,7 @@ import org.pipeline.kit.core.application.github.GithubClientFacade;
 import org.pipeline.kit.core.application.mapper.GithubRepositoryMapper;
 import org.pipeline.kit.core.application.mapper.IRepositoryMapper;
 import org.pipeline.kit.core.domain.provider.Provider;
+import org.pipeline.kit.core.domain.provider.PullRequestDetails;
 import org.pipeline.kit.core.domain.repository.Repository;
 
 import java.io.IOException;
@@ -52,4 +53,11 @@ public class GitHubProvider implements Provider {
         String headCommit = githubClientFacade.getBranchHeadCommit(repositoryName, "master");
         githubClientFacade.createBranch(repositoryName, branchName, headCommit);
     }
+
+    @Override
+    public void createPullRequest(PullRequestDetails pullRequestDetails) throws IOException, InterruptedException {
+        githubClientFacade.createPullRequest(pullRequestDetails);
+    }
+
+
 }

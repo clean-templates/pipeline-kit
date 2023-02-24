@@ -2,6 +2,7 @@ package org.pipeline.kit.core.application.github;
 
 import org.pipeline.kit.core.application.github.client.GithubApiClient;
 import org.pipeline.kit.core.application.github.client.IGithubApiClient;
+import org.pipeline.kit.core.domain.provider.PullRequestDetails;
 import org.pipeline.kit.core.domain.repository.Repository;
 
 import java.io.IOException;
@@ -27,5 +28,9 @@ public class GithubClientFacade {
 
     public String getBranchHeadCommit(String repositoryName, String branchName) throws IOException, InterruptedException {
         return githubApiClient.getBranchHeadCommit(repositoryName, branchName);
+    }
+
+    public void createPullRequest(PullRequestDetails pullRequestDetails) throws IOException, InterruptedException {
+        githubApiClient.createPullRequest(pullRequestDetails);
     }
 }

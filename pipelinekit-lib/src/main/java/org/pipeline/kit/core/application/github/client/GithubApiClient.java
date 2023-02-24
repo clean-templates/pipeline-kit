@@ -6,6 +6,7 @@ import org.kohsuke.github.GHRepository;
 import org.pipeline.kit.core.application.RestClient;
 import org.pipeline.kit.core.application.github.repository.details.Root;
 import org.pipeline.kit.core.application.github.repository.details.Tree;
+import org.pipeline.kit.core.domain.provider.PullRequestDetails;
 import org.pipeline.kit.core.domain.repository.File;
 import org.pipeline.kit.core.domain.repository.Folder;
 import org.pipeline.kit.core.domain.repository.Repository;
@@ -61,6 +62,11 @@ public class GithubApiClient implements IGithubApiClient {
     @Override
     public String getBranchHeadCommit(String repositoryName, String branchName) throws IOException, InterruptedException {
         return getRepoDetails(repositoryName, branchName).getHeadCommit();
+    }
+
+    @Override
+    public void createPullRequest(PullRequestDetails pullRequestDetails) throws IOException, InterruptedException {
+        this.restClient.createPullRequest(pullRequestDetails, token);
     }
 
     // TODO: abstract the github build

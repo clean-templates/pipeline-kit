@@ -12,4 +12,6 @@ public interface Provider {
 
     void createBranch(String repositoryName, String branchName) throws IOException, InterruptedException;
 
+    void createPullRequest(PullRequestDetails pullRequestDetails) throws IOException, InterruptedException;
+
 }

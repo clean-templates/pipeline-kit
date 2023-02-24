@@ -1,6 +1,7 @@
 package org.pipeline.kit.extneral;
 
 import org.pipeline.kit.core.application.RestClient;
+import org.pipeline.kit.core.domain.provider.PullRequestDetails;
 import org.pipeline.kit.core.domain.repository.Repository;
 
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class HttpRestClient implements RestClient {
 
     @Override
     public void createBranch(String repositoryName, String branchName, String headCommit, String token) throws IOException, InterruptedException {
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(HTTPS_API_GITHUB_COM_REPOS
                         .concat(repositoryName)
@@ -64,6 +66,24 @@ public class HttpRestClient implements RestClient {
                 .header("Authorization", "Bearer " + token)
                 .header("X-GitHub-Api-Version", "2022-11-28")
                 .POST(HttpRequest.BodyPublishers.ofString("{\"ref\":\"refs/heads/" + branchName + "\",\"sha\":\"" + headCommit + "\"}"))
+                .build();
+
+        httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    // TODO: create mappers
+    @Override
+    public void createPullRequest(PullRequestDetails pullRequestDetails, String token) throws IOException, InterruptedException {
+        String postBody = "{\"title\":\"" + pullRequestDetails.getTitle() + "\",\"body\":\"" + pullRequestDetails.getBody() + "\",\"head\":\"" + pullRequestDetails.getSource() + "\",\"base\":\"" + pullRequestDetails.getDestination() + "\"}";
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(HTTPS_API_GITHUB_COM_REPOS
+                        .concat(pullRequestDetails.getRepositoryName())
+                        .concat("pulls")
+                ))
+                .header("Accept", "application/vnd.github+json")
+                .header("Authorization", "Bearer " + token)
+                .header("X-GitHub-Api-Version", "2022-11-28")
+                .POST(HttpRequest.BodyPublishers.ofString(postBody))
                 .build();
 
         httpClient.send(request, HttpResponse.BodyHandlers.ofString());
