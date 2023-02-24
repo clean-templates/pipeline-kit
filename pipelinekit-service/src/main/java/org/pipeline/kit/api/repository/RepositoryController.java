@@ -3,6 +3,7 @@ package org.pipeline.kit.api.repository;
 import lombok.AllArgsConstructor;
 import org.pipeline.kit.core.application.repository.ICommandRepositoryService;
 import org.pipeline.kit.core.application.repository.dto.CreateBranchRequest;
+import org.pipeline.kit.core.application.repository.dto.CreatePullRequest;
 import org.pipeline.kit.core.application.repository.dto.CreateRepositoryRequest;
 import org.pipeline.kit.core.domain.repository.Repository;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,22 @@ public class RepositoryController implements RepositoryApi{
     public ResponseEntity<Void> createBranch(CreateBranchApiRequest createBranchApiRequest) {
         commandRepositoryService.createBranch(from(createBranchApiRequest));
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Override
+    public ResponseEntity<Void> createPullRequest(CreatePullRequestApiRequest createPullRequestApiRequest) {
+        commandRepositoryService.createPullRequest(from(createPullRequestApiRequest));
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    private CreatePullRequest from(CreatePullRequestApiRequest createPullRequestApiRequest) {
+        return CreatePullRequest.builder()
+                .repositoryName(createPullRequestApiRequest.getRepositoryName())
+                .source(createPullRequestApiRequest.getSource())
+                .destination(createPullRequestApiRequest.getDestination())
+                .title(createPullRequestApiRequest.getTitle())
+                .body(createPullRequestApiRequest.getBody())
+                .build();
     }
 
     private CreateBranchRequest from(CreateBranchApiRequest createBranchApiRequest) {

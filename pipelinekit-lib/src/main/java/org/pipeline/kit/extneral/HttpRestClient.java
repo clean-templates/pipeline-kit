@@ -78,7 +78,7 @@ public class HttpRestClient implements RestClient {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(HTTPS_API_GITHUB_COM_REPOS
                         .concat(pullRequestDetails.getRepositoryName())
-                        .concat("pulls")
+                        .concat("/pulls")
                 ))
                 .header("Accept", "application/vnd.github+json")
                 .header("Authorization", "Bearer " + token)
