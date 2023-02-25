@@ -80,23 +80,13 @@ public class GithubApiClient implements IGithubApiClient {
 
         for (Tree t : root.getTree()) {
             String path = t.getPath();
-            String type = t.getType();
 
-            if (!path.contains("/")) {
-                if (t.getType().equals("tree")) {
-                    HashMap<String, Folder> folderList = repoDetails.getFolderList();
-                    folderList.put(path, Folder.builder()
-                            .id(t.getSha())
-                            .name(path)
-                            .build());
-                } else {
-                    HashMap<String, File> fileList = repoDetails.getFileList();
-                    fileList.put(path, new File(t.getSha(), path));
-                }
+            if (isRootDirectory(path)) {
+                populateInitialRootDirectory(repoDetails, t, path);
             } else {
-                if (t.getType().equals("tree")) {
-                    String parentPath = path.substring(0, path.lastIndexOf('/'));
-                    Folder startFolder = repoDetails.getFolderList().get(parentPath.split("/")[0]);
+                if (isFolder(t)) {
+                    String parentPath = getParentPath(path);
+                    Folder startFolder = getStartFolder(repoDetails, parentPath);
                     Folder subfolder = findSubfolder(parentPath, startFolder);
                     if (subfolder.getSubFolders() == null) {
                         subfolder.setSubFolders(new HashMap<>());
@@ -111,8 +101,8 @@ public class GithubApiClient implements IGithubApiClient {
                                 .build());
                     }
                 } else {
-                    String parentPath = path.substring(0, path.lastIndexOf('/'));
-                    Folder startFolder = repoDetails.getFolderList().get(parentPath.split("/")[0]);
+                    String parentPath = getParentPath(path);
+                    Folder startFolder = getStartFolder(repoDetails, parentPath);
                     Folder subfolder = findSubfolder(parentPath, startFolder);
                     if (subfolder.getFiles() == null) {
                         subfolder.setFiles(new HashMap<>());
@@ -129,6 +119,35 @@ public class GithubApiClient implements IGithubApiClient {
 
         }
 
+    private static Folder getStartFolder(Repository repoDetails, String parentPath) {
+        return repoDetails.getFolderList().get(parentPath.split("/")[0]);
+    }
+
+    private static String getParentPath(String path) {
+        return path.substring(0, path.lastIndexOf('/'));
+    }
+
+    private static void populateInitialRootDirectory(Repository repoDetails, Tree t, String path) {
+        if (isFolder(t)) {
+            HashMap<String, Folder> folderList = repoDetails.getFolderList();
+            folderList.put(path, Folder.builder()
+                    .id(t.getSha())
+                    .name(path)
+                    .build());
+        } else {
+            HashMap<String, File> fileList = repoDetails.getFileList();
+            fileList.put(path, new File(t.getSha(), path));
+        }
+    }
+
+    private static boolean isFolder(Tree t) {
+        return t.getType().equals("tree");
+    }
+
+    private static boolean isRootDirectory(String path) {
+        return !path.contains("/");
+    }
+
     public Folder findSubfolder(String name, Folder folder) {
         if (folder.getName().equals(name)) {
             return folder;
@@ -142,7 +161,6 @@ public class GithubApiClient implements IGithubApiClient {
                 }
             }
         }
-
         return null;
     }
 }
