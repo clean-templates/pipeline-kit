@@ -34,15 +34,6 @@ public class GithubApiClient implements IGithubApiClient {
     }
 
     @Override
-    public URI buildUri(GHRepository repository, String sha) {
-        return URI.create(GITHUB_BASE_API
-                .concat(repository.getFullName())
-                .concat(GIT_TREES)
-                .concat(sha)
-                .concat(RECURSIVE_PARAM));
-    }
-
-    @Override
     public Repository getRepoDetails(String repositoryName, String repositoryBranch) throws IOException, InterruptedException {
         String repoDetails = this.restClient.getRepoDetails(repositoryName, repositoryBranch);
         Root root = objectReader.readValue(repoDetails, Root.class);

@@ -24,7 +24,7 @@ public interface RepositoryApi {
     @Operation(summary = "create branch from master head commit")
     ResponseEntity<Void> createBranch(@RequestBody CreateBranchApiRequest createBranchApiRequest);
 
-    @PostMapping("/create/pr")
+    @PostMapping("/create/pull-request")
     @Operation(summary = "create a pull request")
     ResponseEntity<Void> createPullRequest(@RequestBody CreatePullRequestApiRequest createPullRequestApiRequest);
 }

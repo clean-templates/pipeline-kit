@@ -14,4 +14,3 @@ public class Object{
     private String type;
     private String url;
 }
-

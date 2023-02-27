@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URI;
 
 public interface IGithubApiClient {
-    URI buildUri(GHRepository repository, String branch);
 
     Repository getRepoDetails(String repositoryName, String repositoryBranch) throws IOException, InterruptedException;
 

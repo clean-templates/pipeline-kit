@@ -58,6 +58,4 @@ public class GitHubProvider implements Provider {
     public void createPullRequest(PullRequestDetails pullRequestDetails) throws IOException, InterruptedException {
         githubClientFacade.createPullRequest(pullRequestDetails);
     }
-
-
 }
